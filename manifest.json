@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MuxBot - Video Analytics Automation",
-  "version": "18.0.0",
+  "version": "18.0.1",
   "description": "Automatiza monitoreo de picos de video en Mux, sincronización en tiempo real, filtrado temporal dinámico de dashboards y extracción de métricas desde Airtable para análisis de streaming.",
   "icons": {
     "16": "icon16.png",
