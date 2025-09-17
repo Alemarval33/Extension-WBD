@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MuxBot Control Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 320px; padding: 16px; background: #f8fafe; color: #233244; }
+    
+    .header { text-align: center; margin-bottom: 20px; }
+    .logo { font-size: 20px; font-weight: bold; color: #1565c0; }
+    .version { font-size: 12px; color: #666; margin-top: 4px; }
+    
+    /* Banner de actualización */
+    .update-banner {
+      background: linear-gradient(135deg, #4CAF50, #45a049);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      text-align: center;
+      display: none;
+    }
+    .update-banner.show { display: block; }
+    .update-title { font-weight: bold; font-size: 14px; margin-bottom: 4px; }
+    .update-version { font-size: 12px; opacity: 0.9; margin-bottom: 8px; }
+    
+    h2 { margin: 0 0 10px 0; font-size: 16px; color: #1565c0; }
+    label { font-size: 13px; display: block; margin-top: 8px; }
+    input[type="text"] { width: 100%; padding: 7px; margin-top: 4px; font-size: 14px; border: 1px solid #bbb; border-radius: 5px; background: #fff; box-sizing: border-box; }
+    .actions { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    button { padding: 8px; font-size: 14px; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; color: #fff; background: #1565c0; }
+    button:hover { opacity: 0.9; }
+    
+    .btn-update { background: linear-gradient(135deg, #4CAF50, #45a049); margin: 4px 0; }
+    .btn-secondary { background: #6c757d; font-size: 12px; padding: 6px; }
+    
+    #abrirMonitoring { background: #0a5ca8; }
+    #abrirOverview { background: #2196F3; }
+    #msgvid { min-height: 16px; font-size: 13px; margin-top: 6px; }
+    
+    #changelog {
+      max-height: 100px;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.2);
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      margin-top: 8px;
+      display: none;
+    }
+    
+    .update-section { border-top: 1px solid #ddd; padding-top: 10px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🤖 MuxBot</div>
+    <div class="version">v<span id="currentVersion">1.3</span></div>
+  </div>
+
+  <!-- Banner de actualización -->
+  <div id="updateBanner" class="update-banner">
+    <div class="update-title">� Actualización Disponible</div>
+    <div class="update-version">Versión <span id="newVersion"></span> lista para instalar</div>
+    <button id="applyUpdateBtn" class="btn-update">📥 Aplicar Actualización</button>
+    <button id="showChangelogBtn" class="btn-secondary">Ver Cambios</button>
+    <div id="changelog"></div>
+  </div>
+
+  <h2>🎬 Control Principal</h2>
+
+  <label for="videoId">Video ID:</label>
+  <input type="text" id="videoId" placeholder="Ingrese Video ID">
+
+  <div class="actions">
+    <button id="guardarId">Guardar Video ID</button>
+    <button id="abrirMonitoring">Abrir Monitoreo</button>
+    <button id="abrirOverview">Abrir Overview + Informes</button>
+  </div>
+
+  <div id="msgvid"></div>
+
+  <div class="update-section">
+    <button id="checkUpdatesBtn" class="btn-secondary">🔄 Buscar Actualizaciones</button>
+    <div id="updateStatus" style="font-size: 11px; color: #666; margin-top: 4px;"></div>
+  </div>
+
+  <script src="utils_sheet.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

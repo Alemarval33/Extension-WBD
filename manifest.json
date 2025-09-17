@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "MuxBot - Video Analytics Automation",
+  "version": "18.0.0",
+  "description": "Automatiza monitoreo de picos de video en Mux, sincronización en tiempo real, filtrado temporal dinámico de dashboards y extracción de métricas desde Airtable para análisis de streaming.",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png", 
+    "128": "icon128.png"
+  },
+  "permissions": ["storage", "tabs", "tabGroups", "downloads", "notifications"],
+  "host_permissions": [
+    "https://dashboard.mux.com/*",
+    "https://wbdottolive.com/admin/global-new-report*",
+    "https://api.airtable.com/*",
+    "https://v3.football.api-sports.io/*",
+    "https://script.google.com/*",
+    "https://api.github.com/*",
+    "https://raw.githubusercontent.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { 
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://dashboard.mux.com/*/monitoring*"],
+      "js": ["utils_mod.js", "utils_sheet.js", "content_monitoring.js"]
+    },
+    {
+      "matches": ["https://dashboard.mux.com/*"],
+      "exclude_matches": ["https://dashboard.mux.com/*/monitoring*"],
+      "js": ["utils_mod.js", "utils_sheet.js", "content_mux.js"]
+    },
+    {
+      "matches": ["https://wbdottolive.com/admin/global-new-report*"],
+      "js": ["utils_mod.js", "content_informes.js"]
+    },
+    {
+      "matches": ["https://airtable.com/*"],
+      "js": ["utils_mod.js", "content_airtable.js"]
+    }
+  ]
+}
